@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import { COLORS, WEIGHTS } from '../../constants';
-import { formatPrice, pluralize, isNewShoe } from '../../utils';
+import { formatPrice, isNewShoe, pluralize } from '../../utils'
 import Spacer from '../Spacer';
 
 const ShoeCard = ({
@@ -90,22 +90,22 @@ const Row = styled.div`
 
 const Name = styled.h3`
   font-weight: ${WEIGHTS.medium};
-  color: ${COLORS.gray[900]};
-`;
+  color: var(--color-gray-900);
+`
 
 const Price = styled.span`
   color: var(--color);
   text-decoration: var(--text-decoration);
-`;
+`
 
 const ColorInfo = styled.p`
-  color: ${COLORS.gray[700]};
-`;
+  color: var(--color-gray-700);
+`
 
 const SalePrice = styled.span`
   font-weight: ${WEIGHTS.medium};
-  color: ${COLORS.primary};
-`;
+  color: var(--color-primary);
+`
 
 const Flag = styled.div`
   position: absolute;
@@ -117,15 +117,15 @@ const Flag = styled.div`
   padding: 0 10px;
   font-size: ${14 / 18}rem;
   font-weight: ${WEIGHTS.bold};
-  color: ${COLORS.white};
+  color: var(--color-white)};
   border-radius: 2px;
-`;
+`
 
 const SaleFlag = styled(Flag)`
-  background-color: ${COLORS.primary};
-`;
+  background-color: var(--color-primary);
+`
 const NewFlag = styled(Flag)`
-  background-color: ${COLORS.secondary};
-`;
+  background-color: var(--color-secondary);
+`
 
 export default ShoeCard;
