@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { COLORS, WEIGHTS } from '../../constants';
+import { WEIGHTS } from '../../constants'
 import { formatPrice, isNewShoe, pluralize } from '../../utils'
 import Spacer from '../Spacer';
 
@@ -37,9 +37,7 @@ const ShoeCard = ({
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
           {variant === 'on-sale' && <SaleFlag>Sale</SaleFlag>}
-          {variant === 'new-release' && (
-            <NewFlag>Just released!</NewFlag>
-          )}
+          {variant === 'new-release' && <NewFlag>Just released!</NewFlag>}
         </ImageWrapper>
         <Spacer size={12} />
         <Row>
@@ -47,7 +45,7 @@ const ShoeCard = ({
           <Price
             style={{
               '--color':
-                variant === 'on-sale' ? COLORS.gray[700] : undefined,
+                variant === 'on-sale' ? 'var(--color-gray-700)' : undefined,
               '--text-decoration':
                 variant === 'on-sale' ? 'line-through' : undefined,
             }}
@@ -63,7 +61,7 @@ const ShoeCard = ({
         </Row>
       </Wrapper>
     </Link>
-  );
+  )
 };
 
 const Link = styled.a`

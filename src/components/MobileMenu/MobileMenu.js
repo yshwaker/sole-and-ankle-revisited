@@ -2,10 +2,10 @@
 import { DialogContent, DialogOverlay } from '@reach/dialog'
 import React from 'react';
 import styled from 'styled-components/macro';
-import { COLORS, WEIGHTS } from '../../constants'
+import { WEIGHTS } from '../../constants'
 
 import Icon from '../Icon'
-import UnstyledButton from '../UnstyledButton'
+import UnstyledButton from '../Unstyle  dButton'
 import VisuallyHidden from '../VisuallyHidden';
 
 const MobileMenu = ({ isOpen, onDismiss }) => {
@@ -15,15 +15,16 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
 
   return (
     <Overlay isOpen={isOpen} onDismiss={onDismiss}>
-      <Content>
+      <Content aria-label="Menu">
         <CloseButton onClick={onDismiss}>
           <VisuallyHidden>Dismiss menu</VisuallyHidden>
           <Icon id="close" strokeWidth={1} />
         </CloseButton>
-        <Side />
+        <Filler />
         <Nav>
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
+          <NavLink href="/men">Men</NavLink>
           <NavLink href="/men">Men</NavLink>
           <NavLink href="/women">Women</NavLink>
           <NavLink href="/kids">Kids</NavLink>
@@ -55,7 +56,7 @@ const Content = styled(DialogContent)`
   bottom: 0;
   right: 0;
   width: 300px;
-  background-color: var(--color-white)};
+  background-color: var(--color-white);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -64,17 +65,19 @@ const Content = styled(DialogContent)`
 
 const CloseButton = styled(UnstyledButton)`
   position: absolute;
-  top: 26px;
-  right: 16px;
+  top: 10px;
+  right: 0px;
+  /* give the button more area to click */
+  padding: 16px;
 `
 
 const Nav = styled.nav`
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 16px;
 `
 
-const Side = styled.div`
+const Filler = styled.div`
   flex: 1;
 `
 
