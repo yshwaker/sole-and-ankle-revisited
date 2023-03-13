@@ -9,6 +9,50 @@ import SuperHeader from '../SuperHeader';
 import UnstyledButton from '../UnstyledButton'
 import VisuallyHidden from '../VisuallyHidden'
 
+const FlipNavLink = ({ href, children }) => {
+  return (
+    <LinkWrapper>
+      <NavLink href={href}>{children}</NavLink>
+      <FlippedNavLink aria-hidden={true} href={href}>
+        {children}
+      </FlippedNavLink>
+    </LinkWrapper>
+  )
+}
+
+const NavLink = styled.a`
+  display: block;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-gray-900);
+  font-weight: ${WEIGHTS.medium};
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 200ms;
+  }
+`
+
+const FlippedNavLink = styled(NavLink)`
+  font-weight: ${WEIGHTS.bold};
+  position: absolute;
+  top: 100%;
+`
+
+const LinkWrapper = styled.div`
+  position: relative;
+  overflow: hidden;
+
+  &:first-of-type ${NavLink} {
+    color: var(--color-secondary);
+  }
+
+  &:hover ${NavLink} {
+    transform: translateY(-100%);
+  }
+`
+
+
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false)
 
@@ -25,12 +69,12 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
+          <FlipNavLink href="/sale">Sale</FlipNavLink>
+          <FlipNavLink href="/new">New&nbsp;Releases</FlipNavLink>
+          <FlipNavLink href="/men">Men</FlipNavLink>
+          <FlipNavLink href="/women">Women</FlipNavLink>
+          <FlipNavLink href="/kids">Kids</FlipNavLink>
+          <FlipNavLink href="/collections">Collections</FlipNavLink>
         </DesktopNav>
         <MobileActions>
           <ShoppingBagButton>
@@ -118,16 +162,6 @@ const ShoppingBagButton = styled(UnstyledButton)`
   transform: translateX(-2px);
 `
 
-const NavLink = styled.a`
-  font-size: 1.125rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--color-gray-900);
-  font-weight: ${WEIGHTS.medium};
 
-  &:first-of-type {
-    color: var(--color-secondary);
-  }
-`
 
 export default Header;
