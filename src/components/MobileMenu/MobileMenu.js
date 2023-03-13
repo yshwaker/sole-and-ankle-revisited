@@ -5,7 +5,7 @@ import styled from 'styled-components/macro';
 import { WEIGHTS } from '../../constants'
 
 import Icon from '../Icon'
-import UnstyledButton from '../Unstyle  dButton'
+import UnstyledButton from '../UnstyledButton'
 import VisuallyHidden from '../VisuallyHidden';
 
 const MobileMenu = ({ isOpen, onDismiss }) => {

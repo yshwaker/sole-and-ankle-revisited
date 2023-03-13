@@ -36,9 +36,9 @@ const ShoeCard = ({
       <Wrapper>
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
-          {variant === 'on-sale' && <SaleFlag>Sale</SaleFlag>}
-          {variant === 'new-release' && <NewFlag>Just released!</NewFlag>}
         </ImageWrapper>
+        {variant === 'on-sale' && <SaleFlag>Sale</SaleFlag>}
+        {variant === 'new-release' && <NewFlag>Just released!</NewFlag>}
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
@@ -62,29 +62,34 @@ const ShoeCard = ({
       </Wrapper>
     </Link>
   )
-};
+}
 
 const Link = styled.a`
   text-decoration: none;
   color: inherit;
-`;
+`
 
-const Wrapper = styled.article``;
-
-const ImageWrapper = styled.div`
+const Wrapper = styled.article`
   position: relative;
-`;
+`
 
 const Image = styled.img`
+  display: block;
   width: 100%;
-  border-radius: 16px 16px 4px 4px;
-`;
+  transition: transform 500ms;
+  transform-origin: 60% center;
+
+  &:hover {
+    transform: scale(1.1);
+    transition: transform 200ms;
+  }
+`
 
 const Row = styled.div`
   font-size: 1rem;
   display: flex;
   justify-content: space-between;
-`;
+`
 
 const Name = styled.h3`
   font-weight: ${WEIGHTS.medium};
@@ -115,8 +120,9 @@ const Flag = styled.div`
   padding: 0 10px;
   font-size: ${14 / 18}rem;
   font-weight: ${WEIGHTS.bold};
-  color: var(--color-white)};
+  color: var(--color-white);
   border-radius: 2px;
+  transition: transform 500ms;
 `
 
 const SaleFlag = styled(Flag)`
@@ -124,6 +130,21 @@ const SaleFlag = styled(Flag)`
 `
 const NewFlag = styled(Flag)`
   background-color: var(--color-secondary);
+`
+
+const ImageWrapper = styled.div`
+  overflow: hidden;
+  border-radius: 16px 16px 4px 4px;
+
+  &:hover ${Image} {
+    transform: scale(1.1);
+    transition: transform 200ms;
+  }
+
+  &:hover + ${Flag} {
+    transform: translateY(-10px);
+    transition: transform 200ms;
+  }
 `
 
 export default ShoeCard;
