@@ -8,49 +8,8 @@ import MobileMenu from '../MobileMenu'
 import SuperHeader from '../SuperHeader';
 import UnstyledButton from '../UnstyledButton'
 import VisuallyHidden from '../VisuallyHidden'
+import { WrapNavLink } from './WrapNavLink'
 
-const FlipNavLink = ({ href, children }) => {
-  return (
-    <LinkWrapper>
-      <NavLink href={href}>{children}</NavLink>
-      <FlippedNavLink aria-hidden={true} href={href}>
-        {children}
-      </FlippedNavLink>
-    </LinkWrapper>
-  )
-}
-
-const NavLink = styled.a`
-  display: block;
-  font-size: 1.125rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--color-gray-900);
-  font-weight: ${WEIGHTS.medium};
-
-  @media (prefers-reduced-motion: no-preference) {
-    transition: transform 200ms;
-  }
-`
-
-const FlippedNavLink = styled(NavLink)`
-  font-weight: ${WEIGHTS.bold};
-  position: absolute;
-  top: 100%;
-`
-
-const LinkWrapper = styled.div`
-  position: relative;
-  overflow: hidden;
-
-  &:first-of-type ${NavLink} {
-    color: var(--color-secondary);
-  }
-
-  &:hover ${NavLink} {
-    transform: translateY(-100%);
-  }
-`
 
 
 const Header = () => {
@@ -69,12 +28,12 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <FlipNavLink href="/sale">Sale</FlipNavLink>
-          <FlipNavLink href="/new">New&nbsp;Releases</FlipNavLink>
-          <FlipNavLink href="/men">Men</FlipNavLink>
-          <FlipNavLink href="/women">Women</FlipNavLink>
-          <FlipNavLink href="/kids">Kids</FlipNavLink>
-          <FlipNavLink href="/collections">Collections</FlipNavLink>
+          <WrapNavLink href="/sale">Sale</WrapNavLink>
+          <WrapNavLink href="/new">New&nbsp;Releases</WrapNavLink>
+          <WrapNavLink href="/men">Men</WrapNavLink>
+          <WrapNavLink href="/women">Women</WrapNavLink>
+          <WrapNavLink href="/kids">Kids</WrapNavLink>
+          <WrapNavLink href="/collections">Collections</WrapNavLink>
         </DesktopNav>
         <MobileActions>
           <ShoppingBagButton>
