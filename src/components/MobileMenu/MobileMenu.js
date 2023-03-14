@@ -26,10 +26,6 @@ const LINKS = [
     name: 'Women',
   },
   {
-    href: '/women',
-    name: 'Women',
-  },
-  {
     href: '/kids',
     name: 'Kids',
   },
@@ -45,7 +41,8 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
   }
 
   return (
-    <Overlay isOpen={isOpen} onDismiss={onDismiss}>
+    <Wrapper isOpen={isOpen} onDismiss={onDismiss}>
+      <Backdrop />
       <Content aria-label="Menu">
         <CloseButton onClick={onDismiss}>
           <VisuallyHidden>Dismiss menu</VisuallyHidden>
@@ -65,7 +62,7 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
           <FooterLink href="/contact">Contact Us</FooterLink>
         </Footer>
       </Content>
-    </Overlay>
+    </Wrapper>
   )
 }
 
@@ -87,14 +84,18 @@ const slideIn = keyframes`
   }
 `
 
-const Overlay = styled(DialogOverlay)`
+const Wrapper = styled(DialogOverlay)`
   position: fixed;
   right: 0;
   top: 0;
   bottom: 0;
   left: 0;
+`
+
+const Backdrop = styled.div`
+  position: absolute;
+  inset: 0;
   background-color: var(--color-gray-700-transparent);
-  /* width: 300px; */
   animation: ${fadeIn} 300ms both;
 `
 
@@ -109,8 +110,11 @@ const Content = styled(DialogContent)`
   flex-direction: column;
   justify-content: center;
   padding: 32px;
-  animation: ${slideIn} 400ms 100ms both cubic-bezier(0.21, 0.58, 0.72, 0.89),
-    ${fadeIn} 500ms 200ms both;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: ${slideIn} 400ms both cubic-bezier(0.06, 0.88, 0.66, 0.99);
+    animation-delay: 200ms;
+  }
 `
 
 const CloseButton = styled(UnstyledButton)`
