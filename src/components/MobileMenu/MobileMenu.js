@@ -15,7 +15,7 @@ const LINKS = [
   },
   {
     href: '/new',
-    name: 'New&nbsp;Releases',
+    name: 'New\u00a0Releases',
   },
   {
     href: '/men',
@@ -54,7 +54,7 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
         <Filler />
         <Nav>
           {LINKS.map(({ href, name }, index) => (
-            <NavLink key="name" href={href} animationDelay={200 + index * 50}>
+            <NavLink key={name} href={href} animationDelay={200 + index * 50}>
               {name}
             </NavLink>
           ))}

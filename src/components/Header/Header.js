@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { QUERIES, WEIGHTS } from '../../constants'
+import { QUERIES } from '../../constants'
 import Icon from '../Icon'
 import Logo from '../Logo';
 import MobileMenu from '../MobileMenu'
