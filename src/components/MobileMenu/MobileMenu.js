@@ -8,6 +8,37 @@ import Icon from '../Icon'
 import UnstyledButton from '../UnstyledButton'
 import VisuallyHidden from '../VisuallyHidden';
 
+const LINKS = [
+  {
+    href: '/sale',
+    name: 'Sale',
+  },
+  {
+    href: '/new',
+    name: 'New&nbsp;Releases',
+  },
+  {
+    href: '/men',
+    name: 'Men',
+  },
+  {
+    href: '/women',
+    name: 'Women',
+  },
+  {
+    href: '/women',
+    name: 'Women',
+  },
+  {
+    href: '/kids',
+    name: 'Kids',
+  },
+  {
+    href: '/collections',
+    name: 'Collections',
+  },
+]
+
 const MobileMenu = ({ isOpen, onDismiss }) => {
   if (!isOpen) {
     return null
@@ -22,13 +53,11 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
         </CloseButton>
         <Filler />
         <Nav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
+          {LINKS.map(({ href, name }, index) => (
+            <NavLink key="name" href={href} animationDelay={200 + index * 50}>
+              {name}
+            </NavLink>
+          ))}
         </Nav>
         <Footer>
           <FooterLink href="/terms">Terms and Conditions</FooterLink>
@@ -112,6 +141,9 @@ const NavLink = styled.a`
   &:first-of-type {
     color: var(--color-secondary);
   }
+
+  animation: ${fadeIn} 500ms both;
+  animation-delay: ${(props) => props.animationDelay}ms;
 `
 
 const Footer = styled.footer`
