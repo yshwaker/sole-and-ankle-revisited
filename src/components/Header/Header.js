@@ -8,6 +8,7 @@ import MobileMenu from '../MobileMenu'
 import SuperHeader from '../SuperHeader';
 import UnstyledButton from '../UnstyledButton'
 import VisuallyHidden from '../VisuallyHidden'
+import { FlipNavLink } from './FlipNavLink'
 import { WrapNavLink } from './WrapNavLink'
 
 
@@ -28,7 +29,7 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <WrapNavLink href="/sale">Sale</WrapNavLink>
+          <FlipNavLink href="/sale">Sale</FlipNavLink>
           <WrapNavLink href="/new">New&nbsp;Releases</WrapNavLink>
           <WrapNavLink href="/men">Men</WrapNavLink>
           <WrapNavLink href="/women">Women</WrapNavLink>

@@ -3,43 +3,48 @@ import { WEIGHTS } from '../../constants'
 
 export const FlipNavLink = ({ href, children }) => {
   return (
-    <LinkWrapper>
-      <NavLink href={href}>{children}</NavLink>
-      <FlippedNavLink aria-hidden={true} href={href}>
+    <NavLink>
+      <Text href={href}>{children}</Text>
+      <HoverText aria-hidden={true} href={href}>
         {children}
-      </FlippedNavLink>
-    </LinkWrapper>
+      </HoverText>
+    </NavLink>
   )
 }
 
 const NavLink = styled.a`
   display: block;
+  position: relative;
+  /* Text slide up effect */
+  overflow: hidden;
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
 
-  @media (prefers-reduced-motion: no-preference) {
-    transition: transform 200ms;
+  &:first-of-type {
+    color: var(--color-secondary);
   }
 `
 
-const FlippedNavLink = styled(NavLink)`
+const Text = styled.span`
+  display: block;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 500ms;
+
+    ${NavLink}:hover & {
+      transform: translateY(-100%);
+      transition: transform 250ms;
+    }
+  }
+`
+
+const HoverText = styled(Text)`
   font-weight: ${WEIGHTS.bold};
   position: absolute;
   top: 100%;
 `
 
-const LinkWrapper = styled.div`
-  position: relative;
-  overflow: hidden;
 
-  &:first-of-type ${NavLink} {
-    color: var(--color-secondary);
-  }
-
-  &:hover ${NavLink} {
-    transform: translateY(-100%);
-  }
-`
