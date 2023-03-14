@@ -77,9 +77,11 @@ const Image = styled.img`
   display: block;
   width: 100%;
   transition: transform 500ms;
-  transform-origin: 60% center;
+  transform-origin: 50% 75%;
+  will-change: transform;
 
-  &:hover {
+  ${Link}:hover &,
+  ${Link}:focus & {
     transform: scale(1.1);
     transition: transform 200ms;
   }
@@ -123,6 +125,12 @@ const Flag = styled.div`
   color: var(--color-white);
   border-radius: 2px;
   transition: transform 500ms;
+
+  ${Link}:hover &,
+  ${Link}:focus & {
+    transform: translateY(-10px);
+    transition: transform 200ms;
+  }
 `
 
 const SaleFlag = styled(Flag)`
@@ -133,18 +141,11 @@ const NewFlag = styled(Flag)`
 `
 
 const ImageWrapper = styled.div`
+  /* Image zooms in on hover/focus,
+    truncate the spillover
+   */
   overflow: hidden;
   border-radius: 16px 16px 4px 4px;
-
-  &:hover ${Image} {
-    transform: scale(1.1);
-    transition: transform 200ms;
-  }
-
-  &:hover + ${Flag} {
-    transform: translateY(-10px);
-    transition: transform 200ms;
-  }
 `
 
 export default ShoeCard;
