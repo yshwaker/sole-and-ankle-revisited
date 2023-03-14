@@ -80,10 +80,13 @@ const Image = styled.img`
   transform-origin: 50% 75%;
   will-change: transform;
 
-  ${Link}:hover &,
-  ${Link}:focus & {
-    transform: scale(1.1);
-    transition: transform 200ms;
+  /* disable for devices that can't hover */
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    ${Link}:hover &,
+    ${Link}:focus & {
+      transform: scale(1.1);
+      transition: transform 200ms;
+    }
   }
 `
 
@@ -126,10 +129,12 @@ const Flag = styled.div`
   border-radius: 2px;
   transition: transform 500ms;
 
-  ${Link}:hover &,
-  ${Link}:focus & {
-    transform: translateY(-10px);
-    transition: transform 200ms;
+  @media (prefers-reduced-motion: no-preference) {
+    ${Link}:hover &,
+    ${Link}:focus & {
+      transform: translateY(-10px);
+      transition: transform 200ms;
+    }
   }
 `
 
